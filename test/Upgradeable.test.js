@@ -1,3 +1,4 @@
+// not work yet because version (maybe)
 const Counter1 = artifacts.require('Counter1');
 const Counter2 = artifacts.require('Counter2');
 const Proxy = artifacts.require('Proxy');
@@ -10,7 +11,7 @@ contract('Upgradeable', function(accounts) {
 
     await impl_proxy.upgradeTo(impl_v1.address);
     //    await Counter1.at(impl_proxy.address).increaseByOne({ from: accounts[0] });
-    await Counter1.increaseByOne({ from: accounts[0] });
+    await impl_v1.increaseByOne({ from: accounts[0] });
     const value = await Counter1.at(impl_proxy.address).getValue();
     console.log(value);
 
